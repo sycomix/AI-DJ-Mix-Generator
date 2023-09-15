@@ -2,7 +2,9 @@
 
 ## Project Description
 
-The AI DJ Mix Generator is an innovative tool that seeks to revolutionize the music mixing domain by integrating artificial intelligence and expert insights from professional DJing. This project not only aims to advance existing technologies but also to preserve the artistry in DJing by incorporating nuanced elements from a professional DJ's perspective. 
+The AI DJ Mix Generator is an innovative tool that seeks to revolutionize the music mixing domain by integrating artificial intelligence and expert insights from professional DJing. Trained on XML metadata from Rekordbox - a professional DJ software by Pioneer DJ, and fine-tuned with a private music collection, this project not only aims to advance existing technologies but also to preserve the artistry in DJing by incorporating nuanced elements from a professional DJ's perspective. 
+
+Part of the project, the LSTM model (`lstm_model.pth`), which is crucial for generating cue points, is extracted from the AI Cue Point Generator and will be updated consistently to enhance its performance and accuracy as it undergoes retraining on larger datasets. Additionally, the `scaler.joblib` is the tool utilized for preprocessing new data, ensuring the seamless integration and functioning of the model.
 
 ## Table of Contents
 
@@ -56,6 +58,7 @@ Ready to jump in? Here's how you can get started with the AI DJ Mix Generator!
 1. **Clone the Repository**: Clone the project repository to your local machine.
    
 2. **Setting Up Your Environment**: Before you begin, make sure to set up a virtual environment to manage dependencies. You can create a virtual environment using the following command:
+
 
 python3 -m venv env
 
