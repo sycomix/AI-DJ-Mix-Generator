@@ -60,17 +60,17 @@ Ready to dive in? Here's how you can kick start your journey with the AI DJ Mix 
 2. **Setting Up Your Environment**: Before you start, ensure to establish a virtual environment to manage dependencies. You can do this with the command:
 
 
-`python3 -m venv env`
+```python3 -m venv env```
 
 3. **Installing Dependencies**: Navigate to the project directory and install the necessary dependencies using the `requirements.txt` file. Run the following command in your terminal:
 
-`pip install -r requirements.txt`
+```pip install -r requirements.txt```
 
 4. **Adding Your Music**: Create a folder with all the tracks you want to mix and add it to the current working directory.
 
 5. **Running the Script**: Now, it's time to generate your mix! Run the `main.py` script and provide the path to your music folder when prompted. Like so:
 
-`python main.py`
+```python main.py```
 
 "Enter the path to the folder of music: " -> < path to folder goes here >  
 
