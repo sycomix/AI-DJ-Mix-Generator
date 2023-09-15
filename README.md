@@ -2,48 +2,69 @@
 
 ## Project Description
 
-In this section, provide a detailed description of your project. Include information on what the project does, the problem it solves, and any other relevant details.
+The AI DJ Mix Generator is an innovative tool that seeks to revolutionize the music mixing domain by integrating artificial intelligence and expert insights from professional DJing. This project not only aims to advance existing technologies but also to preserve the artistry in DJing by incorporating nuanced elements from a professional DJ's perspective. 
 
-## Installation
+## Table of Contents
 
-### Prerequisites
+1. [Main Objective](#main-objective)
+2. [AI-Generated Cue Points](#ai-generated-cue-points)
+3. [EQ Features](#eq-features)
+4. [Randomness and Authenticity](#randomness-and-authenticity)
+5. [Full Automation](#full-automation)
+6. [Getting Started](#getting-started)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [Contact](#contact)
 
-- Python 3.x
-- pip (Python Package Installer)
+## Main Objective
 
-### Steps
+The core objective of this project is to develop a tool that brings a fresh and automated approach to the DJing process while retaining the artistry and expertise that a professional DJ would incorporate in a live set. This tool aims to create seamless, unique, and high-quality mixes by automating several aspects that were previously done manually.
 
-1. Clone the repository to your local machine using `git clone [repository URL]`.
-2. Navigate to the project directory: `cd AI-DJ-Mix-Generator`.
-3. Install the required packages: `pip install -r requirements.txt`.
+## AI-Generated Cue Points
 
-## Usage
+This feature stands as a cornerstone of the project, offering significant advancements over existing tools. The process involves:
 
-In this section, provide instructions on how to use your project. For instance, describe the steps needed to execute the .py files.
+- **Data Collection**: Gathering a rich dataset from the Rekordbox collection where cue points have been manually selected.
+- **Feature Extraction**: Leveraging specific beat timestamps and extracting relevant musical features for model training.
+- **Model Training**: Utilizing the data to train an AI model that can generate 12 cue points on unseen songs, which facilitates high-quality mixing while preserving the musical structure.
+- **Implementation**: Integrating the trained model into the generator to automatically select the best cue points for new songs.
 
-1. Step 1: (Describe the first step here)
-2. Step 2: (Describe the second step here)
-   
-## Code Structure
+## EQ Features
 
-Briefly explain the structure of your code and the role of different files.
+The EQ feature enables smoother transitions between songs by adjusting the frequencies during the crossfade, incorporating:
 
-- `file1.py`: (Describe the role of this file)
-- `file2.py`: (Describe the role of this file)
+- **Algorithm Development**: Crafting algorithms that dynamically adjust the EQ settings to create seamless transitions.
+- **Transition Timing**: Allowing for flexible transition times ranging from 1-3 minutes, enhancing the mixing experience.
+- **User Interface**: Including user-adjustable settings for real-time modifications during a mix.
 
-## Notebooks
+## Randomness and Authenticity
 
-While the repository contains Jupyter Notebooks, they are not necessary for running the code. They were used for development and documentation purposes. Users are encouraged to focus on the `.py` files for implementation.
+This aspect of the project focuses on bringing a sense of authenticity and spontaneity to the mixes, featuring:
+
+- **Cue Point Selection**: Implementing a random selection mechanism for the initial cue points, thereby creating a unique starting point for each track.
+- **Bass Swap Timing**: Introducing randomness in the bass swap timings to create an authentic and dynamic mixing experience.
+- **Authenticity**: Ensuring that each mix generated is unique, emulating the variability and creativity seen in live DJ performances.
+
+## Full Automation
+
+The tool offers full automation, empowering users with greater control over the mixing process through:
+
+- **Song Input**: Enabling users to input their preferred song files, offering more independence in song selection compared to other tools.
+- **Mix Download**: Facilitating easy sharing and saving of mixes by allowing users to download the created mix directly to their device.
+
+## Getting Started
+
+*Details on how to get started with the project, including setup instructions and dependencies.*
 
 ## Contributing
 
-In this section, provide details on how others can contribute to your project.
+*Information on how users can contribute to the project.*
 
 ## License
 
-Specify the license under which your project is distributed.
+*Details about the license (if any).*
 
 ## Contact
 
-Provide contact details or links to your GitHub profile for users who may have questions or want to follow your work.
+*Your contact information and other necessary details.*
 
