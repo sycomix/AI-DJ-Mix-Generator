@@ -16,6 +16,7 @@ Part of this project, the `lstm_model.pth`, a critical component for generating 
 6. [Contributing](#contributing)
 7. [License](#license)
 8. [Contact](#contact)
+9. [Demo Links](#demo-links)
 
 ## Main Objective
 
