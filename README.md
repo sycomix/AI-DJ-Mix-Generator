@@ -51,7 +51,26 @@ This section details the techniques utilized in both the AI Cue Point Generator 
 
 ## Getting Started
 
-*Details on how to get started with the project, including setup instructions and dependencies.*
+Ready to jump in? Here's how you can get started with the AI DJ Mix Generator!
+
+1. **Clone the Repository**: Clone the project repository to your local machine.
+   
+2. **Setting Up Your Environment**: Before you begin, make sure to set up a virtual environment to manage dependencies. You can create a virtual environment using the following command:
+
+python3 -m venv env
+
+3. **Installing Dependencies**: Navigate to the project directory and install the necessary dependencies using the `requirements.txt` file. Run the following command in your terminal:
+
+pip install -r requirements.txt
+
+4. **Adding Your Music**: Create a folder with all the tracks you want to mix and add it to the current working directory.
+
+5. **Running the Script**: Now, it's time to generate your mix! Run the `main.py` script and provide the path to your music folder when prompted. Like so:
+
+python main.py
+
+"Enter the path to the folder of music: " -> < path to folder goes here >  
+
 
 ## Contributing
 
