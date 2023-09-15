@@ -19,7 +19,7 @@ The AI DJ Mix Generator is an innovative tool that seeks to revolutionize the mu
 
 The core objective of this project is to develop a tool that brings a fresh and automated approach to the DJing process while retaining the artistry and expertise that a professional DJ would incorporate in a live set. This tool aims to create seamless, unique, and high-quality mixes by automating several aspects that were previously done manually.
 
-## AI-Generated Cue Points (Notebook 1)
+## AI-Generated Cue Points
 
 This section outlines the development of the AI model responsible for generating cue points in tracks. The notebook involves the following steps:
 
@@ -27,9 +27,7 @@ This section outlines the development of the AI model responsible for generating
 2. **Labels**: Timestamps are labeled as cue points or not, providing a supervised dataset for training the model.
 3. **LSTM Model for AI Cue Point Generator**: An LSTM Neural Network is implemented using PyTorch to identify recurring patterns signifying cue points.
 
-[Include detailed information from your document regarding the AI-Generated Cue Points section here.]
-
-## AI DJ Mix Generator (Notebook 2)
+## AI DJ Mix Generator
 
 This section encapsulates the functionalities and techniques incorporated in the AI DJ Mix Generator, including the following components:
 
@@ -39,8 +37,6 @@ This section encapsulates the functionalities and techniques incorporated in the
 4. **Randomness via Relevant Cue Point Selection & Randomness**: Incorporates a semi-random approach to select cue points for creating a unique and dynamic mix.
 5. **Frequency Equalization of the Songs (EQing)**: Implements functions to adjust the frequency components of the songs to facilitate smoother transitions.
 6. **Final Step: Generating a Mix**: Combines the adjusted audio files based on the determined cue points to generate a seamless mix.
-
-[Include detailed information from your document regarding the AI DJ Mix Generator section here.]
 
 ## Techniques Employed
 
@@ -52,16 +48,6 @@ This section details the techniques utilized in both the AI Cue Point Generator 
 2. **Beat Detection**: Essential beat information is retrieved using various libraries, with Madmom providing the most accurate results.
 3. **BPM Estimation**: The BPM of songs is estimated, a crucial step for aligning tracks in the mixing process.
 4. **Feature Extraction for Each Beat Timestamp**: Features are extracted for each beat timestamp using the Librosa library, including MFCC, Spectral Centroid, Spectral Contrast, Spectral Rolloff, Spectral Flux, and RMS.
-
-[Include detailed information from your document regarding the Techniques Employed section here.]
-
-### 4.4 Techniques for AI Cue Point Generator
-
-[Include detailed information from your document regarding the Techniques for AI Cue Point Generator section here.]
-
-### 4.5 Techniques for AI DJ Mix Generator
-
-[Include detailed information from your document regarding the Techniques for AI DJ Mix Generator section here.]
 
 ## Getting Started
 
