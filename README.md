@@ -45,7 +45,7 @@ This part encapsulates the functionalities and techniques embedded in the AI DJ 
 
 This section elaborates on the techniques utilized in both the AI Cue Point Generator and the AI DJ Mix Generator, encompassing:
 
-### 4.3.1 Techniques for both AI Cue Point Generator and AI DJ Mix Generator
+### Techniques for both AI Cue Point Generator and AI DJ Mix Generator
 
 1. **Reading from WAV File**: This step initiates the preprocessing of tracks by reading audio files from the "wav" format.
 2. **Beat Detection**: This process retrieves critical beat information using various libraries, with Madmom offering the most precise results.
