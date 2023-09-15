@@ -41,7 +41,7 @@ This part encapsulates the functionalities and techniques embedded in the AI DJ 
 5. **Frequency Equalization of the Songs (EQing)**: This process involves adjusting the frequency components of the songs, facilitating smoother transitions.
 6. **Final Step: Generating a Mix**: This final step merges the adjusted audio files based on the determined cue points to produce a seamless mix.
 
-## Techniques Employed
+## Techniques Employed 
 
 This section elaborates on the techniques utilized in both the AI Cue Point Generator and the AI DJ Mix Generator, encompassing:
 
