@@ -1,0 +1,11 @@
+matplotlib==3.4.3
+librosa==0.8.1
+numpy==1.21.2
+madmom==0.16.1
+pydub==0.25.1
+pyrubberband==0.3.0
+scipy==1.7.1
+yodel==0.3.0
+torch==1.9.0
+scikit-learn==0.24.2
+ipython==7.26.0
