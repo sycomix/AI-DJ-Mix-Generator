@@ -1,0 +1,25 @@
+MIT License with Source Code Viewing Restriction
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to view the source code of the Software, subject to the following conditions:
+
+1. Users are allowed to view the source code of the Software for the purpose of study, reference, or collaboration.
+
+2. Users are not permitted to use, copy, modify, merge, publish, distribute, sublicense, or sell copies of the Software, or any part thereof, in a proprietary or commercial context.
+
+3. Users are expressly prohibited from using the Software, or any part thereof, in any closed-source or proprietary software project or in conjunction with any commercial product.
+
+4. Redistributions of the source code must retain this license and the original copyright notice.
+
+5. The Software is provided "as is," without warranty of any kind, express or implied.
+
+By using this Software, you agree to abide by the above conditions and limitations.
+
+For questions or concerns regarding this license, please contact the project owner.
+
+Original MIT License (for reference):
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
