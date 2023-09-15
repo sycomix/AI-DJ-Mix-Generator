@@ -71,15 +71,10 @@ python main.py
 
 "Enter the path to the folder of music: " -> < path to folder goes here >  
 
-
-## Contributing
-
-*Information on how users can contribute to the project.*
-
 ## License
 
-*Details about the license (if any).*
+The project is licensed under the MIT license. You can find the license details in the [MITLicense.txt](MITLicense.txt) file in the project repository.
 
 ## Contact
 
-*Your contact information and other necessary details.*
+ruszkowskifranciszek@gmail.com
