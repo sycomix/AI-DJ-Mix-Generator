@@ -1,11 +1,10 @@
-matplotlib==3.4.3
-librosa==0.8.1
-numpy==1.21.2
-madmom==0.16.1
+librosa==0.10.0.post2
+-e git+https://github.com/CPJKU/madmom.git@3bc8334099feb310acfce884ebdb76a28e01670d#egg=madmom
+numpy==1.24.3
 pydub==0.25.1
 pyrubberband==0.3.0
-scipy==1.7.1
+scikit-learn==1.2.2
+scipy==1.10.1
+soundfile==0.12.1
+torch==2.0.1
 yodel==0.3.0
-torch==1.9.0
-scikit-learn==0.24.2
-ipython==7.26.0
