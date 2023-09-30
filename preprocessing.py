@@ -60,7 +60,16 @@ def estimate_tempo_from_downbeats(downbeats):
     # Since downbeat_differences are in seconds, this gives beats per minute
     tempo = 4 * (60 / mod_diff)
 
-    tempo = round(tempo)  # Since tempo can be a single value array, extract the scalar
+    try:
+        # Attempt to round tempo normally
+        tempo = round(tempo)
+    except TypeError:
+        # If that fails, try converting tempo to a scalar and then rounding
+        if tempo.size == 1:
+            tempo = round(tempo.item())
+        else:
+            print("Warning: Unexpected tempo value:", tempo)
+            return None, mod_diff, downbeat_differences  # Return None if tempo is not a scalar
 
     return tempo, mod_diff, downbeat_differences
 
