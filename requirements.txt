@@ -1,5 +1,4 @@
 librosa==0.10.0.post2
-matplotlib==3.4.3
 -e git+https://github.com/CPJKU/madmom.git@3bc8334099feb310acfce884ebdb76a28e01670d#egg=madmom
 numpy==1.24.3
 pydub==0.25.1
