@@ -1,7 +1,6 @@
 # Import libraries
 
 import librosa
-import librosa.display
 import pyrubberband as pyrb
 import soundfile as sf
 import random
