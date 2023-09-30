@@ -1,7 +1,6 @@
 # Import libraries
 
 import librosa
-import librosa.display
 import madmom
 import os
 from scipy.stats import mode
