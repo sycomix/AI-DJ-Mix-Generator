@@ -54,7 +54,7 @@ def estimate_tempo_from_downbeats(downbeats):
     downbeat_differences = np.around(np.diff(downbeats[:, 0]), decimals=6)
 
     # Get the mode of the differences
-    mod_diff = mode(downbeat_differences).mode
+    mod_diff = mode(downbeat_differences, keepdims=False).mode
 
     # Calculate the tempo: 60 seconds divided by the average difference
     # Since downbeat_differences are in seconds, this gives beats per minute
