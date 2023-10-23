@@ -53,12 +53,9 @@ def combine_multiple_tracks(tracks, cues, sr):
 
 
 def calculate_transition_points(cues):
-    transition_points = []
-
     # Start with the first track's cue out
     cumulative_cue = cues[0]
-    transition_points.append(cumulative_cue)
-
+    transition_points = [cumulative_cue]
     # Loop to calculate subsequent transition points
     for i in range(1, len(cues) // 2):
         cumulative_cue += cues[2*i] - cues[2*(i-1) + 1]
@@ -66,7 +63,7 @@ def calculate_transition_points(cues):
 
     # Convert transition points into the desired format (minutes:seconds)
     formatted_transitions = [f"{int(tp // 60)}:{int(tp % 60):02}" for tp in transition_points]
-    nonform = [tp for tp in transition_points]
+    nonform = list(transition_points)
 
     return formatted_transitions, nonform
 

@@ -40,14 +40,14 @@ class Track:
     @staticmethod
     def convert_to_feature_vector(beat_features):
         """Convert beat features into a flattened feature vector."""
-        # Flatten MFCC and Spectral Contrast
-        flat_features = list(beat_features['MFCC']) + \
-                        list(beat_features['Spectral Contrast']) + \
-                        [beat_features['Spectral Centroid']] + \
-                        [beat_features['Spectral Rolloff']] + \
-                        [beat_features['Spectral Flux']] + \
-                        [beat_features['RMS']]
-        return flat_features
+        return (
+            list(beat_features['MFCC'])
+            + list(beat_features['Spectral Contrast'])
+            + [beat_features['Spectral Centroid']]
+            + [beat_features['Spectral Rolloff']]
+            + [beat_features['Spectral Flux']]
+            + [beat_features['RMS']]
+        )
 
     def prepare_features_for_prediction(self):
         # Load the scaler and model

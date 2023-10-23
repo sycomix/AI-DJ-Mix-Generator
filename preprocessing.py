@@ -22,9 +22,11 @@ def get_audio_files_from_path(path):
     Returns:
     - List of full paths to the .wav and .aif files in the directory.
     """
-    audio_files = [os.path.join(path, file_name) for file_name in os.listdir(path)
-                   if file_name.endswith('.wav') or file_name.endswith('.aif')]
-    return audio_files
+    return [
+        os.path.join(path, file_name)
+        for file_name in os.listdir(path)
+        if file_name.endswith('.wav') or file_name.endswith('.aif')
+    ]
 
 
 def detect_beats_and_downbeats(audio_file, sr=44100):
@@ -94,11 +96,8 @@ def extract_features(audio, sr, timestamp, window_size=1.0):
     end_sample = center_sample + int(sr * window_size / 2)
 
     # Check for edge cases
-    if start_sample < 0:
-        start_sample = 0
-    if end_sample > len(audio):
-        end_sample = len(audio)
-
+    start_sample = max(start_sample, 0)
+    end_sample = min(end_sample, len(audio))
     windowed_audio = audio[start_sample:end_sample]
 
     # If windowed_audio is too small, return an empty dictionary
@@ -128,13 +127,13 @@ def extract_features(audio, sr, timestamp, window_size=1.0):
     # Calculate RMS for the beat
     rms = librosa.feature.rms(y=windowed_audio)
 
-    features = {
+    return {
         "MFCC": mfcc_coeffs.mean(axis=1),  # Averaging over time frames
         "Spectral Centroid": np.mean(spec_centroid),
-        "Spectral Contrast": np.mean(spec_contrast, axis=1),  # Averaging over frequency bands
+        "Spectral Contrast": np.mean(
+            spec_contrast, axis=1
+        ),  # Averaging over frequency bands
         "Spectral Rolloff": np.mean(spec_rolloff),
         "Spectral Flux": np.mean(flux),
-        "RMS": np.mean(rms)
+        "RMS": np.mean(rms),
     }
-
-    return features

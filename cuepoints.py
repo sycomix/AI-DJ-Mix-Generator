@@ -55,10 +55,7 @@ def categorize_cue_points(cue_points):
         remainder = point % 4
         arrays[remainder].append(point)
 
-    # Find the array with the most cue points
-    max_key = max(arrays, key=lambda k: len(arrays[k]))
-
-    return max_key
+    return max(arrays, key=lambda k: len(arrays[k]))
 
 
 def detect_cue_points_for_track(track, num_cue_points=12, filter_by=None):

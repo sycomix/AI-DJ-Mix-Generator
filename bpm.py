@@ -26,8 +26,7 @@ def adjust_tempo_pyrb(input_file, output_file, tempo_ratio):
 
 
 def calculate_tempo_ratio(master, slave):
-    ratio = master.tempo/slave.tempo
-    return ratio
+    return master.tempo/slave.tempo
 
 
 def adjust_tempo_and_analyze(master_key, slave_key, tracks_dict):
@@ -65,10 +64,7 @@ def get_mode_bpm(tracks):
     """
     bpm_values = [track.tempo for track in tracks.values()]
     mode_value = mode(bpm_values).mode
-    if np.isscalar(mode_value):
-        return mode_value
-    else:
-        return mode_value[0]
+    return mode_value if np.isscalar(mode_value) else mode_value[0]
 
 
 def adjust_tracks_to_mode_bpm(tracks):
