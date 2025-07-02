@@ -1,17 +1,16 @@
 import torch
 from joblib import load
 
-from preprocessing import *
+import preprocessing
 
 
 class Track:
-
     _all_tracks = {}  # Class level dictionary to store all instances
 
     def __init__(self, name, wav_file):
         self.name = name
         self.wav_file = wav_file
-        self.audio, self.sr = librosa.load(wav_file, sr=44100)
+        self.audio, self.sr = preprocessing.librosa.load(wav_file, sr=44100)
         self.downbeats = None
         self.beats = None
         self.tempo = None
@@ -25,14 +24,14 @@ class Track:
         Track._all_tracks[self.name] = self
 
     def detect_beats_and_downbeats(self):
-        self.beats, self.downbeats = detect_beats_and_downbeats(self.wav_file)
+        self.beats, self.downbeats = preprocessing.detect_beats_and_downbeats(self.wav_file)
 
     def estimate_tempo_from_downbeats(self):
-        self.tempo, _, _ = estimate_tempo_from_downbeats(self.downbeats)
+        self.tempo, _, _ = preprocessing.estimate_tempo_from_downbeats(self.downbeats)
 
     def extract_features_for_beats(self):
         for beat_time in self.beats:
-            feature = extract_features(self.audio, self.sr, beat_time)
+            feature = preprocessing.extract_features(self.audio, self.sr, beat_time)
             self.features.append(feature)  # Appending to the list
             flat_feature = self.convert_to_feature_vector(feature)
             self.flat_features.append(flat_feature)
@@ -98,7 +97,7 @@ def instantiate_and_rename_tracks(file_list):
     # Instantiation
     for wav_file in file_list:
         # Extract the base name of the file without extension
-        track_name = os.path.splitext(os.path.basename(wav_file))[0]
+        track_name = preprocessing.os.path.splitext(preprocessing.os.path.basename(wav_file))[0]
         Track(track_name, wav_file)  # This will automatically add the track to _all_tracks
 
     # Rename tracks
@@ -116,6 +115,3 @@ def preprocess_track(track):
     track.estimate_tempo_from_downbeats()
 
     print(f"Estimated Tempo for {track.name}: {track.tempo:.2f} BPM")
-
-
-

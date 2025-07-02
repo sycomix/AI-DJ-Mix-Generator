@@ -1,14 +1,15 @@
 # Import libraries
 
+import os
+
 import librosa
 import madmom
-import os
-from scipy.stats import mode
 from madmom.features.downbeats import *
+from scipy.stats import mode
 
 
 def load_track(wav_file):
-    audio, sr = librosa.load(wav_file,sr = 44100)
+    audio, sr = librosa.load(wav_file, sr=44100)
     return audio, sr
 
 

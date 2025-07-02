@@ -1,9 +1,10 @@
 # Import libraries
 
-import yodel.filter
-import numpy as np
 import math
 import random
+
+import numpy as np
+import yodel.filter
 
 
 def lin2db(linval):
@@ -40,7 +41,6 @@ def adjust_audio(audio, sr, gains):
     # Each gain value should be between -1 and 1, where -1 corresponds to -∞ dB (muted) and 1 corresponds to 0 dB (normal level)
 
     if len(audio) == 0:
-
         return audio
 
     # Convert gains to dB
@@ -139,7 +139,7 @@ def smooth_eq(audio, sr, gains, cue_times, chunk_size=44100):
             # Apply the EQ changes
             processed_audio[j:end_j] = adjust_audio(audio[j:end_j], sr, [current_gain_lows, current_gain_highs])
 
-    #print(f"smooth_eq - iteration {i}, processed_audio length after: {len(processed_audio)}")
+    # print(f"smooth_eq - iteration {i}, processed_audio length after: {len(processed_audio)}")
     # After the last cue time, keep the EQ changes at the last gains
     if cue_samples[-1] < len(audio):
         processed_audio[cue_samples[-1]:] = adjust_audio(audio[cue_samples[-1]:], sr, gains[-1])
@@ -160,20 +160,20 @@ def generate_track_cue_in_out(tracks):
     cue_in_out_points = []
 
     # For the first track (only cue out)
-    aout_index = random.randint(6, 8)
+    aout_index = random.randint(min(6, len(tracks[0].cue_points) - 1), min(8, len(tracks[0].cue_points) - 1))
     acue_out = tracks[0].cue_points[aout_index]
     cue_in_out_points.append((None, acue_out))
 
     # For the middle tracks (both cue in and cue out)
     for i in range(1, len(tracks) - 1):
-        bin_index = random.randint(0, 2)
-        bout_index = random.randint(6, 8)
+        bin_index = random.randint(0, min(2, len(tracks[i].cue_points) - 1))
+        bout_index = random.randint(min(6, len(tracks[i].cue_points) - 1), min(8, len(tracks[i].cue_points) - 1))
         bcue_in = tracks[i].cue_points[bin_index]
         bcue_out = tracks[i].cue_points[bout_index]
         cue_in_out_points.append((bcue_in, bcue_out))
 
     # For the last track (only cue in)
-    cin_index = random.randint(0, 2)
+    cin_index = random.randint(0, min(2, len(tracks[-1].cue_points) - 1))
     ccue_in = tracks[-1].cue_points[cin_index]
     cue_in_out_points.append((ccue_in, None))
 
@@ -185,10 +185,10 @@ def generate_bass_cue_points(cue_in_out_points, tracks):
     bass_cue_points = []
 
     # Initial values
-    #y = random.choice([1, 2, 3])
+    # y = random.choice([1, 2, 3])
     y = random.choice([2, 3])
 
-    #z = random.choice([4, 8, 16, 32])
+    # z = random.choice([4, 8, 16, 32])
     z = random.choice([4, 8])
 
     x = beats_to_seconds(tracks[0].tempo, z)
@@ -214,11 +214,11 @@ def generate_bass_cue_points(cue_in_out_points, tracks):
         bbass_up_index = bin_index + y
         bbass_up = tracks[i].cue_points[bbass_up_index]
 
-        cin_index = tracks[i+1].cue_points.index(cue_in_out_points[i+1][0])
+        cin_index = tracks[i + 1].cue_points.index(cue_in_out_points[i + 1][0])
         cbass_up_index = cin_index + y
-        cbass_up = tracks[i+1].cue_points[cbass_up_index]
+        cbass_up = tracks[i + 1].cue_points[cbass_up_index]
 
-        bbass_down = bcue_out + (cbass_up - tracks[i+1].cue_points[cin_index]) - x
+        bbass_down = bcue_out + (cbass_up - tracks[i + 1].cue_points[cin_index]) - x
 
         bass_cue_points.append((bbass_up, bbass_down))
 
@@ -258,12 +258,12 @@ def generate_cue_points_matrix(tracks):
     matrix.extend([['None', 'None', 'None', 'None', 'None'] for _ in range(len(tracks))])
 
     for i in range(len(cue_in_out_points)):
-        track_name = f"Track {i+1}"
+        track_name = f"Track {i + 1}"
         cue_in, cue_out = cue_in_out_points[i]
         bass_up, bass_down = bass_cue_points[i]
 
         # Update the row instead of appending
-        matrix[i+1] = [track_name, cue_in, cue_out, bass_up, bass_down]
+        matrix[i + 1] = [track_name, cue_in, cue_out, bass_up, bass_down]
 
     return cue_in_out_points, bass_cue_points, combined_cue_points, matrix
 
@@ -272,7 +272,6 @@ def generate_cue_points_matrix(tracks):
 
 
 def create_eq_adjusted_tracks(track1, track2, t1_bass, t2_bass, sr):
-
     # Define the gains and cue times for track1 (the master)
     gains1_bass = [[1, 1], [0.1, 1]]
     cue_times1_bass = [0, t1_bass]
@@ -297,12 +296,13 @@ def generate_eq_adjusted_tracks(tracks, bass_cues, sr):
 
     # For the middle tracks (both bass up and bass down)
     for i in range(1, len(tracks) - 1):
-
         # Adjust bass up
-        _, track_with_bass_up = create_eq_adjusted_tracks(tracks[i-1], tracks[i], bass_cues[2*i-2], bass_cues[2*i-1], sr)
+        _, track_with_bass_up = create_eq_adjusted_tracks(tracks[i - 1], tracks[i], bass_cues[2 * i - 2],
+                                                          bass_cues[2 * i - 1], sr)
 
         # Adjust bass down for the same track
-        track_with_bass_down, _ = create_eq_adjusted_tracks(track_with_bass_up, tracks[i+1], bass_cues[2*i], bass_cues[2*i+1], sr)
+        track_with_bass_down, _ = create_eq_adjusted_tracks(track_with_bass_up, tracks[i + 1], bass_cues[2 * i],
+                                                            bass_cues[2 * i + 1], sr)
 
         eq_adjusted_tracks.append(track_with_bass_down)
 
@@ -318,8 +318,9 @@ def generate_eq_adjusted_tracks(tracks, bass_cues, sr):
 
 def track_fade_out(track, t_treble, duration, sr):
     """Adjust treble for the track fading out."""
-    gains = [[1, 1],[1, 1] ,[1, 0.8], [1, 0.6], [1, 0.4], [1, 0.2], [0.01, 0.01]]
-    cue_times = [0, t_treble, t_treble +0.1*duration, t_treble + 0.2*duration, t_treble + 0.4*duration, t_treble + 0.8*duration, t_treble + duration+10]
+    gains = [[1, 1], [1, 1], [1, 0.8], [1, 0.6], [1, 0.4], [1, 0.2], [0.01, 0.01]]
+    cue_times = [0, t_treble, t_treble + 0.1 * duration, t_treble + 0.2 * duration, t_treble + 0.4 * duration,
+                 t_treble + 0.8 * duration, t_treble + duration + 10]
     print(f"track_fade_out duration: {duration}")
     return smooth_eq(track, sr, gains, cue_times)
 
@@ -327,7 +328,8 @@ def track_fade_out(track, t_treble, duration, sr):
 def track_fade_in(track, t_treble, duration, sr):
     """Adjust treble for the track fading in."""
     gains = [[0.01, 0.01], [0.01, 0.01], [1, 0.8], [1, 1], [1, 1], [1, 1]]
-    cue_times = [0, t_treble, t_treble + 0.2*duration, t_treble + 0.4*duration, t_treble + 0.8*duration, t_treble + duration+10]
+    cue_times = [0, t_treble, t_treble + 0.2 * duration, t_treble + 0.4 * duration, t_treble + 0.8 * duration,
+                 t_treble + duration + 10]
     print(f"track_fade_in duration: {duration}")
     return smooth_eq(track, sr, gains, cue_times)
 
@@ -338,35 +340,38 @@ def generate_treble_adjusted_tracks(tracks, cue_matrix, sr):
     # For the first track (only fade out)
 
     # First duration is difference between
-    duration_out_first = float(cue_matrix[2][3] if cue_matrix[2][3] else 0) - float(cue_matrix[2][1] if cue_matrix[2][1] else 0)
+    duration_out_first = float(cue_matrix[2][3] if cue_matrix[2][3] else 0) - float(
+        cue_matrix[2][1] if cue_matrix[2][1] else 0)
 
     # it starts at first tracks cue out
     treble_out_first = float(cue_matrix[1][2] if cue_matrix[1][2] else 0)
 
-    #print(f"First track - duration_out: {duration_out_first}")
+    # print(f"First track - duration_out: {duration_out_first}")
 
     first_track_treble = track_fade_out(tracks[0], treble_out_first, duration_out_first, sr)
     treble_adjusted_tracks.append(first_track_treble)
 
     for i in range(1, len(tracks) - 1):  # This will loop over the 2nd and 3rd tracks in the tracks list
         # For fade-in of the track
-        duration_in = float(cue_matrix[i+1][2] if cue_matrix[i+1][2] else 0) - float(cue_matrix[i+1][1] if cue_matrix[i+1][1] else 0)
-        treble_in = float(cue_matrix[i+1][1] if cue_matrix[i+1][1] else 0)
+        duration_in = float(cue_matrix[i + 1][2] if cue_matrix[i + 1][2] else 0) - float(
+            cue_matrix[i + 1][1] if cue_matrix[i + 1][1] else 0)
+        treble_in = float(cue_matrix[i + 1][1] if cue_matrix[i + 1][1] else 0)
         treble_adjusted_track_in = track_fade_in(tracks[i], treble_in, duration_in, sr)
 
         # For fade-out of the track
-        duration_out = float(cue_matrix[i+2][3] if cue_matrix[i+2][3] else 0) - float(cue_matrix[i+2][1] if cue_matrix[i+2][1] else 0)
-        treble_out = float(cue_matrix[i+1][2] if cue_matrix[i+1][2] else 0)
+        duration_out = float(cue_matrix[i + 2][3] if cue_matrix[i + 2][3] else 0) - float(
+            cue_matrix[i + 2][1] if cue_matrix[i + 2][1] else 0)
+        treble_out = float(cue_matrix[i + 1][2] if cue_matrix[i + 1][2] else 0)
         treble_adjusted_track_out = track_fade_out(treble_adjusted_track_in, treble_out, duration_out, sr)
 
         treble_adjusted_tracks.append(treble_adjusted_track_out)
 
         # That ends the iteration
 
-
     # For the last track (only fade in)
     # Difference between its bass up and cue in - 5 seconds) so its loud 5 seconds before it drops
-    duration_in_last = float(cue_matrix[-1][3] if cue_matrix[-1][3] else 0) - float(cue_matrix[-1][1] if cue_matrix[-1][1] else 0)
+    duration_in_last = float(cue_matrix[-1][3] if cue_matrix[-1][3] else 0) - float(
+        cue_matrix[-1][1] if cue_matrix[-1][1] else 0)
     # tracks cue in
     treble_in_last = float(cue_matrix[-1][1] if cue_matrix[-1][1] else 0)
 

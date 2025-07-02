@@ -2,8 +2,8 @@
 
 import librosa
 import librosa.display
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def plot_spectrogram(y, sr, title=None):

@@ -1,11 +1,13 @@
 # Import libraries
 
+import random
 import librosa
+import numpy as np
 import pyrubberband as pyrb
 import soundfile as sf
-import random
+from scipy.stats import mode
+
 # Import Functions
-from preprocessing import *
 from track import *
 
 
@@ -17,7 +19,7 @@ def adjust_tempo_pyrb(input_file, output_file, tempo_ratio):
     audio_adjusted = pyrb.time_stretch(audio, sr, tempo_ratio)
 
     # Normalize the amplitude
-    #audio_adjusted = audio_adjusted / np.max(np.abs(audio_adjusted))
+    # audio_adjusted = audio_adjusted / np.max(np.abs(audio_adjusted))
 
     # Write the adjusted audio to a .wav file
     sf.write(output_file, audio_adjusted, sr)
@@ -26,7 +28,7 @@ def adjust_tempo_pyrb(input_file, output_file, tempo_ratio):
 
 
 def calculate_tempo_ratio(master, slave):
-    ratio = master.tempo/slave.tempo
+    ratio = master.tempo / slave.tempo
     return ratio
 
 
@@ -38,7 +40,8 @@ def adjust_tempo_and_analyze(master_key, slave_key, tracks_dict):
     tempo_ratio = calculate_tempo_ratio(master, slave)
 
     # Adjust the tempo of the slave track using pyrubberband
-    adjusted_audio, output_file = adjust_tempo_pyrb(slave.wav_file, f"{slave_key}_AT_{master.tempo}bpm.wav", tempo_ratio)
+    adjusted_audio, output_file = adjust_tempo_pyrb(slave.wav_file, f"{slave_key}_AT_{master.tempo}bpm.wav",
+                                                    tempo_ratio)
 
     # Create a new Track instance for the adjusted audio
     adjusted_slave = Track(f"{slave_key}_AT_{master.tempo}bpm", output_file)
@@ -48,7 +51,7 @@ def adjust_tempo_and_analyze(master_key, slave_key, tracks_dict):
 
     # Preprocess the adjusted track
     preprocess_track(adjusted_slave)
-    #detect_cue_points_for_track(adjusted_slave, num_cue_points=12)
+    # detect_cue_points_for_track(adjusted_slave, num_cue_points=12)
 
     return adjusted_slave
 

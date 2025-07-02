@@ -1,5 +1,6 @@
 import numpy as np
 
+
 # Creating the Mix
 
 
@@ -38,12 +39,12 @@ def combine_multiple_tracks(tracks, cues, sr):
     # Loop until the second last track
     for i in range(1, len(tracks) - 1):
         master_cue = cumulative_cue
-        slave_cue = cues[2*(i-1) + 1]
+        slave_cue = cues[2 * (i - 1) + 1]
 
         combined_mix = overlap_tracks(combined_mix, tracks[i], master_cue, slave_cue, sr)
 
         # Update cumulative_cue for the next iteration
-        cumulative_cue += cues[2*i] - slave_cue
+        cumulative_cue += cues[2 * i] - slave_cue
 
     # Handle the last track separately
     last_track_cue_in = cues[-1]
@@ -61,7 +62,7 @@ def calculate_transition_points(cues):
 
     # Loop to calculate subsequent transition points
     for i in range(1, len(cues) // 2):
-        cumulative_cue += cues[2*i] - cues[2*(i-1) + 1]
+        cumulative_cue += cues[2 * i] - cues[2 * (i - 1) + 1]
         transition_points.append(cumulative_cue)
 
     # Convert transition points into the desired format (minutes:seconds)
@@ -69,4 +70,3 @@ def calculate_transition_points(cues):
     nonform = [tp for tp in transition_points]
 
     return formatted_transitions, nonform
-
